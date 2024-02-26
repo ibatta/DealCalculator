@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal Calculator</title>
+  <style>
+    /* Basic styling for a clean and organized layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .input-container {
+      display: flex;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+    .input-container label {
+      width: 120px;
+      text-align: left;
+    }
+    input[type="number"] {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      flex: 1;
+    }
+    button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Deals calcualtor</h1>
+  <form action="{% url 'dealDecider:process_data' %}" method="post">  <div class="input-container">
+    {% csrf_token %}
+      <label for="PricePerUnit">Price Per Unit: </label>
+      <input type="number" id="PricePerUnit" name="PricePerUnit" required>
+    </div>
+    <div class="input-container">
+      <label for="CountOfPieces">Count Of Pieces: </label>
+      <input type="number" id="CountOfPieces" name="CountOfPieces" required>
+    </div>
+    <div class="input-container">
+      <label for="SellingPreice">Selling Preice: </label>
+      <input type="number" id="SellingPreice" name="SellingPreice" required>
+    </div>
+    <div class="input-container">
+      <label for="delivery">Delivery: </label>
+      <input type="number" id="delivery" name="delivery" required value="500">
+    </div>
+    <div class="input-container">
+      <label for="Promotion">Promotion: </label>
+      <input type="number" id="Promotion" name="Promotion" required value="1000">
+    </div>
+    <div class="input-container">
+      <label for="Defects">Defects (unit): </label>
+      <input type="number" id="Defects" name="Defects" required value="0">
+    </div>
+    <div class="input-container">
+      <label for="Period">Period (months): </label>
+      <input type="number" id="Period" name="Period" required value="1">
+    </div>
+    <div class="input-container">
+      <label for="Percent">Percent (%) : </label>
+      <input type="number" id="Percent" name="Percent" required value="50">
+    </div>
+    <button type="Calcualte">Calculate</button>
+  </form>
+  <h3>
+  <pre>{{ results }}</pre>
+  </h3>
+</body>
+</html>
